@@ -173,6 +173,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+        Aimeos\Shop\ShopServiceProvider::class,
 
         /*
          * Application Service Providers...
