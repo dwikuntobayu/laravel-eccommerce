@@ -168,7 +168,6 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        dogears\CrudDscaffold\GeneratorsServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
