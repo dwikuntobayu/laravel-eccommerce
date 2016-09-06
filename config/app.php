@@ -173,6 +173,17 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         Aimeos\Shop\ShopServiceProvider::class,
+        //provider for scaffold
+        Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
+        Amranidev\Ajaxis\AjaxisServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+        //end scaffold
+        //scaffold infyomlabs
+        Laracasts\Flash\FlashServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
+        \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class, 
+        //end infyomlabs
 
         /*
          * Application Service Providers...
@@ -237,6 +248,7 @@ return [
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
         'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
+        'Flash'     => Laracasts\Flash\Flash::class,
 
     ],
 
