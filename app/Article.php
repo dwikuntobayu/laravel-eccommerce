@@ -13,9 +13,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Article extends Model
 {
-	
-	
     protected $table = 'articles';
 
-	
+    public $fillable = [
+        'title',
+        'content'
+    ];
 }

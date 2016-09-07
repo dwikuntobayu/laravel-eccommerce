@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateArticleRequest;
+use App\Entities\ArticleRepository;
 use App\Article;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
-
+use Flash;
 /**
  * Class ArticleController
  *
  * @author  The scaffold-interface created at 2016-09-06 03:39:22pm
  * @link  https://github.com/amranidev/scaffold-interface
  */
-class ArticleController extends Controller
+class ArticleController extends AppBaseController
 {
+    private $articleRepository;
+    public function __construct(ArticleRepository $articleRepo)
+    {
+        $this->articleRepository = $articleRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +42,6 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        
         return view('article.create');
     }
 
@@ -44,21 +51,18 @@ class ArticleController extends Controller
      * @param    \Illuminate\Http\Request  $request
      * @return  \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateArticleRequest $request)
     {
-        $article = new Article();
+        $input = $request->all();
+        $article = $this->articleRepository->create($input);
+        Flash::success('Article saved successfully.');
+        return redirect(route('article.index'));
 
-        
-        $article->title = $request->title;
-
-        
-        $article->content = $request->content;
-
-        
-        
-        $article->save();
-
-        return redirect('article');
+        // $article = new Article();
+        // $article->title = $request->title;
+        // $article->content = $request->content;
+        // $article->save();
+        // return redirect('article');
     }
 
     /**
@@ -92,7 +96,6 @@ class ArticleController extends Controller
             return URL::to('article/'. $id . '/edit');
         }
 
-        
         $article = Article::findOrfail($id);
         return view('article.edit',compact('article'  ));
     }
@@ -107,12 +110,8 @@ class ArticleController extends Controller
     public function update($id,Request $request)
     {
         $article = Article::findOrfail($id);
-    	
         $article->title = $request->title;
-        
         $article->content = $request->content;
-        
-        
         $article->save();
 
         return redirect('article');
@@ -128,7 +127,6 @@ class ArticleController extends Controller
     public function DeleteMsg($id,Request $request)
     {
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/article/'. $id . '/delete/');
-
         if($request->ajax())
         {
             return $msg;
@@ -143,8 +141,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-     	$article = Article::findOrfail($id);
-     	$article->delete();
+        $article = Article::findOrfail($id);
+        $article->delete();
         return URL::to('article');
     }
 }

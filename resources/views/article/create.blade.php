@@ -15,22 +15,29 @@
                 <button class = 'btn blue'>Article Index</button>
             </form>
             <br>
-            <form method = 'POST' action = '{{url("article")}}'>
-                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                
-                <div class="input-field col s6">
-                    <input id="title" name = "title" type="text" class="validate">
-                    <label for="title">title</label>
+            
+            {!! Form::open(['route' => 'article.store']) !!}
+                <!-- Name Field -->
+                <div class="form-group col-sm-6">
+                    {!! Form::label('title', 'Title:') !!}
+                    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('title') !!}
                 </div>
                 
-                <div class="input-field col s6">
-                    <input id="content" name = "content" type="text" class="validate">
-                    <label for="content">content</label>
+                <!-- Description Field -->
+                <div class="form-group col-sm-12 col-lg-12">
+                    {!! Form::label('content', 'Content:') !!}
+                    {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '5']) !!}
+                    {!! $errors->first('content') !!}
                 </div>
                 
-                
-                <button class = 'btn red' type ='submit'>Create</button>
-            </form>
+                <!-- Submit Field -->
+                <div class="form-group col-sm-12">
+                    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                    <a href="{!! route('article.index') !!}" class="btn btn-default">Cancel</a>
+                </div>
+            {!! Form::close() !!}
+            
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

@@ -37,7 +37,7 @@ class Planet extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
+        'name' => 'required|unique:planets',
         'description' => 'required'
     ];
 
