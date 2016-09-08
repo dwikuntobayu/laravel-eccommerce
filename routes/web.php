@@ -34,3 +34,6 @@ Route::resource('glasses', 'GlassController');
 Route::resource('skies', 'SkyController');
 
 Route::resource('planets', 'PlanetController');
+
+// Route::get('my-todos', 'TodoController@getAllTodos')->name('mytodo');
+// Route::resource('todos', 'TodoController');

@@ -37,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapWebRoutes();
         $this->mapApiRoutes();
-        // $this->mapAuthRoutes();
+        $this->mapTodoRoutes();
     }
 
     /**
@@ -75,6 +75,18 @@ class RouteServiceProvider extends ServiceProvider
             'as' => 'api.',
         ], function ($router) {
             require base_path('routes/api.php');
+        });
+    }
+    
+    protected function mapTodoRoutes()
+    {
+        Route::group([
+            'middleware' => 'api',
+            'namespace' => $this->namespace,
+            'prefix' => 'api',
+            'as' => 'api.',
+        ], function ($router) {
+            require base_path('routes/todo.php');
         });
     }
 }
